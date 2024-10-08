@@ -1,39 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:meucinema/api_service.dart';
-import 'package:meucinema/cadastrar_usuario.dart';
 
-
-class TelaLogin extends StatefulWidget {
+class TelaCadastro extends StatefulWidget {
   @override
-  _TelaLoginState createState() => _TelaLoginState();
+  _TelaCadastroState createState() => _TelaCadastroState();
 }
 
-class _TelaLoginState extends State<TelaLogin> {
-
-  final TextEditingController _usuarioController = TextEditingController();
+class _TelaCadastroState extends State<TelaCadastro> {
+  final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
   final ApiService apiService = ApiService();
 
-  void _login() async {
-    String usuario = _usuarioController.text;
+  void _cadastrar() async {
+    String nome = _nomeController.text;
     String senha = _senhaController.text;
 
-    if (usuario.isEmpty || senha.isEmpty) {
-      // Exibir mensagem de erro se os campos estiverem vazios
+    if (nome.isEmpty || senha.isEmpty) {
       _showMessage('Por favor, preencha todos os campos.');
       return;
     }
 
     try {
-      // Chamar o método do ApiService para autenticação
-      final response = await apiService.autenticaUsuario(usuario, senha);
-      if (response == "Usuário autenticado com sucesso!") {
-        Navigator.pushNamed(context, '/filmes');
-      } else {
-        _showMessage('Usuário ou senha inválidos.');
-      }
+      final response = await apiService.cadastrarUsuario(nome, senha);
+      Navigator.pop(context);
     } catch (e) {
-      _showMessage('Erro ao tentar autenticar: $e');
+      _showMessage('Erro ao tentar cadastrar: $e');
     }
   }
 
@@ -59,7 +50,7 @@ class _TelaLoginState extends State<TelaLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login MeuCinema'),
+        title: Text('Cadastro MeuCinema'),
         backgroundColor: Colors.black.withOpacity(0.9),
       ),
       body: Stack(
@@ -67,7 +58,7 @@ class _TelaLoginState extends State<TelaLogin> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/fundo.jpg'), 
+                image: AssetImage('assets/images/fundo.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -78,27 +69,27 @@ class _TelaLoginState extends State<TelaLogin> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20), 
+                  SizedBox(height: 20),
                   Text(
-                    'Bem-vindo ao MeuCinema',
+                    'Cadastre-se no MeuCinema',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white, 
+                      color: Colors.white,
                     ),
                   ),
                   SizedBox(height: 30),
-                  // Campo de usuário
+                  // Campo de nome
                   SizedBox(
                     width: 300,
                     child: TextField(
-                      controller: _usuarioController,
-                      style: TextStyle(color: Colors.black), 
+                      controller: _nomeController,
+                      style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        labelText: 'Usuário',
+                        labelText: 'Nome',
                         filled: true,
-                        fillColor: Colors.white.withOpacity(0.7), 
-                        labelStyle: TextStyle(color: Colors.black), 
+                        fillColor: Colors.white.withOpacity(0.7),
+                        labelStyle: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),
@@ -108,35 +99,23 @@ class _TelaLoginState extends State<TelaLogin> {
                     width: 300,
                     child: TextField(
                       controller: _senhaController,
-                      style: TextStyle(color: Colors.black), 
+                      style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         labelText: 'Senha',
                         filled: true,
-                        fillColor: Colors.white.withOpacity(0.7), 
-                        labelStyle: TextStyle(color: Colors.black), 
+                        fillColor: Colors.white.withOpacity(0.7),
+                        labelStyle: TextStyle(color: Colors.black),
                       ),
                       obscureText: true,
                     ),
                   ),
                   SizedBox(height: 20),
-                  // Botão de login
+                  // Botão de cadastrar
                   SizedBox(
                     width: 300,
                     child: ElevatedButton(
-                      onPressed: _login,
-                      child: Text('Entrar'),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TelaCadastro()),
-                      );
-                    },
-                    child: Text(
-                      'Cadastrar um novo usuário',
-                      style: TextStyle(color: Colors.white),
+                      onPressed: _cadastrar,
+                      child: Text('Cadastrar'),
                     ),
                   ),
                 ],
