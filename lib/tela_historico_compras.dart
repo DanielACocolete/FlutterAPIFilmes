@@ -101,6 +101,12 @@ class _TelaHistoricoComprasState extends State<TelaHistoricoCompras> {
                                 color: const Color.fromARGB(255, 228, 224, 11),
                               ),
                             ),
+                            Text(
+                              'Preço: ${historico['preco']}',
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 228, 224, 11),
+                              ),
+                            ),
                           ],
                         ),
                       ),

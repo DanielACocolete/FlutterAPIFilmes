@@ -33,7 +33,7 @@ class _TelaLoginState extends State<TelaLogin> {
         _showMessage('Usuário ou senha inválidos.');
       }
     } catch (e) {
-      _showMessage('Erro ao tentar autenticar: $e');
+      _showMessage('Usuário ou senha incorretos!');
     }
   }
 

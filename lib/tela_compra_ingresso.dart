@@ -16,7 +16,7 @@ class _TelaCompraIngressoState extends State<TelaCompraIngresso> {
   String? nomeComprador;
   String? horario;
   String? dia;
-  double? preco;
+  String? preco;
 
   ApiService apiService = ApiService();
 
@@ -79,18 +79,12 @@ class _TelaCompraIngressoState extends State<TelaCompraIngresso> {
                       return null;
                     },
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: "Preço"),
-                    keyboardType: TextInputType.number,
-                    onSaved: (value) {
-                      preco = double.tryParse(value ?? '');
-                    },
-                    validator: (value) {
-                      if (value == null || double.tryParse(value) == null) {
-                        return 'Por favor, insira o preço';
-                      }
-                      return null;
-                    },
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text(
+                      preco = widget.filme['preco'],
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(

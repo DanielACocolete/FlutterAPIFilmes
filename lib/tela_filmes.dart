@@ -119,9 +119,19 @@ class _TelaFilmesState extends State<TelaFilmes> {
                               filme['nome'],
                               style: TextStyle(color: Colors.grey),
                             ),
-                            subtitle: Text(
-                              filme['tipo'],
-                              style: TextStyle(color: Colors.grey),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  filme['tipo'],
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  filme['preco'],
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ],
                             ),
                             onTap: () {
                               Navigator.push(
