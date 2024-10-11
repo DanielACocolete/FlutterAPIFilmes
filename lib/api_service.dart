@@ -47,7 +47,7 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return response.body; // O corpo da resposta deve conter a mensagem de sucesso
+      return response.body; 
     } else {
       throw Exception('Falha ao cadastrar o usuário');
     }

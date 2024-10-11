@@ -98,7 +98,7 @@ class _TelaFilmesState extends State<TelaFilmes> {
             child: filmes.isEmpty
                 ? CircularProgressIndicator()
                 : SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.8, // 80% da altura da tela
+                    height: MediaQuery.of(context).size.height * 0.8,
                     child: ListView.builder(
                       itemCount: filmes.length,
                       itemBuilder: (context, index) {

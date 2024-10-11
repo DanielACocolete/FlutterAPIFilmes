@@ -29,9 +29,9 @@ class _TelaHistoricoComprasState extends State<TelaHistoricoCompras> {
 
  void excluirCompra(int id) async {
     try {
-      await apiService.deletarCompra(id); // Supondo que o método deleteCompra seja implementado no ApiService
+      await apiService.deletarCompra(id);
       setState(() {
-        historicoCompras.removeWhere((compra) => compra['id'] == id); // Remove a compra da lista local
+        historicoCompras.removeWhere((compra) => compra['id'] == id);
       });
       carregarHistoricoCompras();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Compra excluída com sucesso!')));

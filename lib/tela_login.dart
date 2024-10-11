@@ -19,13 +19,11 @@ class _TelaLoginState extends State<TelaLogin> {
     String senha = _senhaController.text;
 
     if (usuario.isEmpty || senha.isEmpty) {
-      // Exibir mensagem de erro se os campos estiverem vazios
       _showMessage('Por favor, preencha todos os campos.');
       return;
     }
 
     try {
-      // Chamar o método do ApiService para autenticação
       final response = await apiService.autenticaUsuario(usuario, senha);
       if (response == "Usuário autenticado com sucesso!") {
         Navigator.pushNamed(context, '/filmes');
@@ -103,7 +101,6 @@ class _TelaLoginState extends State<TelaLogin> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  // Campo de senha
                   SizedBox(
                     width: 300,
                     child: TextField(
@@ -119,7 +116,6 @@ class _TelaLoginState extends State<TelaLogin> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  // Botão de login
                   SizedBox(
                     width: 300,
                     child: ElevatedButton(
@@ -127,6 +123,7 @@ class _TelaLoginState extends State<TelaLogin> {
                       child: Text('Entrar'),
                     ),
                   ),
+                  SizedBox(height: 30),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -136,7 +133,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     },
                     child: Text(
                       'Cadastrar um novo usuário',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Color.fromARGB(255, 228, 224, 11)),
                     ),
                   ),
                 ],
